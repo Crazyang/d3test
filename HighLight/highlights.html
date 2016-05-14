@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+	    <title>PHC - Circular heat chart</title>
+	    <link rel="stylesheet" href="BarChart/bulletBar.css">
+	    <link rel="stylesheet" href="LineChart/timeLineChart.css">
+      <link rel="stylesheet" href="css/style.css">
+	    <link rel="stylesheet" href="css/svg.css">
+      <script src="d3.js"></script>
+  		<!-- <script src="BarChart/bullet.js"></script> -->
+			<script src="BarChart/bulletBar.js"></script>
+  		<script src="LineChart/timeLineChart.js"></script>
+			<script src="angular.js"></script>
+      <!-- <script src="HighlightsCtrl.js"></script> -->
+	</head>
+
+	<body>
+		<div ng-app="highlightApp" >
+      <div  class="leftTopDiv" ng-controller="leftTopDivCtrl"> Radar Charts Highlights
+      <div >
+        <div >Persistent Issues (have been Red or Amber during last 3 months)</div>
+        <div >
+  				<span>Indicator</span>
+          <span>Saverity</span>
+          <span>Contact Person</span>
+        </div>
+        <div class = "abc{{colorFlg}}" ng-repeat="x in persistentIssuesTabledata">
+					<span>{{ x.Indicator }}</span>
+          <span>{{ x.Severity }}</span>
+          <span>{{ x.Contact_Person }}</span>
+        </div>
+				<div >Indicators Deteriorated this Month </div>
+        <div >
+          <span>Indicater</span>
+          <span>Saverity</span>
+          <span>Contact Person</span>
+        </div>
+        <div ng-repeat="y in deterioratedTabledata">
+          <span>{{ y.Indicator }}</span>
+          <span>{{ y.Severity }}</span>
+          <span>{{ y.Contact_Person }}</span>
+        </div>
+      </div>
+      </div>
+      <div  class="leftBottomDiv" ng-controller="leftBottomDivCtrl">
+        <div calss = "assessmentTitle">Missing & Stagnat Data by Assessment</div>
+        <div >
+          <div >
+    				<span>Assessment</span>
+            <span>Frequency</span>
+            <span>Last Data</span>
+            <span>Contact Person</span>
+          </div>
+          <div ng-repeat="x in assessmentData">
+              <span>{{ x.Assessment }}</span>
+              <span>{{ x.Frequency }}</span>
+              <span>{{ x.Last_Data }}</span>
+              <span>{{ x.Contact_Person }}</span>
+          </div>
+      </div>
+      </div>
+      <div  class="rightTopDiv" ng-controller="rightTopDivCtrl">
+        <div id="sectorAndIotTtile" class="highlightTitle">Benchmark agaginst other integrated Accounts</div>
+        <div id="sectorBarchartTitle" class="barchartTitle">Top 3 indicators devlating from average by Sector</div>
+        <div id="sectorBarchart" class="barchart"></div>
+				<div id="sectorMarkList" class="marksList">  <span class="markCircle"></span>Account  <span class="markRect"></span>Benchmark </div>
+        <div id="iotBarchartTitle" class="barchartTitle">Top 3 indicators devlating from average by IOT</div>
+        <div id="iotBarchart" class="barchart"></div>
+				<div id="iotMarkList" class="marksList"><span class="markCircle"></span>Account <span class="markRect"></span>Benchmark   </div>
+      </div>
+      <div  class="rightBottomDiv" ng-controller="rightBottomDivCtrl">
+				<div id="historicTimeLineTtile" class="timellineTitle">Benchmark agaginst other integrated Accounts</div>
+				<div id="historicTimeLineSubTitle" class="timeLineSubTitle">Top 3 indicators devlating from average by Sector</div>
+				<div id="historicTimeLineChart" class="timeLinechart"></div>
+				<div class="ex-container">
+					<div class=""><span class="lineEx c-black"></span><span>GBS 7 keys:Team</span></div>
+					<div class=""><span class="lineEx c-darkblue"></span><span>GBS 7 keys:Stakeholders</span></div>
+					<div class=""><span class="lineEx c-blue"></span><span>GBS 7 keys:Stakeholders</span></div>
+				</div>
+    </div>
+
+    <div>
+      <script src="HighlightsCtrl.js"></script>
+    </body>
+  </html>

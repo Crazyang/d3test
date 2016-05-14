@@ -1,0 +1,53 @@
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  fill: steelblue;
+}
+.y.axis path {
+  fill: none;
+}
+.area {
+  fill: steelblue;
+}
+
+.trendLine {
+  fill: none;
+  width: 2px
+  /*stroke: steelblue;
+  stroke-width: 1.5px;*/
+}
+.markLineDescription{
+  fill: bule;
+  height: 2px
+  width: 50px
+}
+.ex-container{
+  height: 200px;
+  width: 500px;
+  margin: 0 200px;
+}
+.lineEx{
+  width: 20px;
+  height: 3px;
+  margin: 5px 10px;
+  display: block;
+  float: left;
+}
+.c-black{
+  background: #000;
+}
+.c-blue{
+  background: #4056F3;
+}
+.c-darkblue{
+  background: #06105A;
+}
+.x.axis .tick line {
+  stroke: #777;
+  stroke-dasharray: 2,2;
+}

@@ -1,0 +1,28 @@
+/* SVG styling */
+svg {
+	width: 960px;
+	height: 300px;
+}
+#energychart svg, #chart3 svg {
+	height: 560px;
+}
+#chart4 svg {
+	height: 570px;
+}
+path {
+	stroke: #fff;
+	stroke-width: 2px;
+}
+
+.labels {
+	fill: #aaa;
+	font-weight: 200;
+	letter-spacing: -1px;
+}
+.labels.segment {
+	font-size: 12px;
+}
+
+#chart3 .labels {
+	fill: #000;
+}

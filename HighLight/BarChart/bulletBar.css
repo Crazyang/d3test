@@ -1,0 +1,37 @@
+.bulletBar {
+  width: 960px;
+	height: 30px;
+  font: 10px sans-serif;
+}
+.bulletBar { font: 10px sans-serif; }
+.bulletBar .marker { stroke: #000; stroke-width: 2px; }
+.bulletBar .tick line { stroke: #666; stroke-width: .5px; }
+.bulletBar .range.s0 { fill: #eee; }
+.bulletBar .title { font-size: 14px; font-weight: bold; }
+.bulletBar .subtitle { fill: #999; }
+
+
+.marksList{
+  width: 200px;
+  margin-left: 100px;
+}
+
+
+.markCircle{
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background: blue;
+  margin: 0 10px;
+}
+.markRect{
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: black;
+  margin: 0 10px;
+}
+barChartBody {
+  font: 10px sans-serif;
+}

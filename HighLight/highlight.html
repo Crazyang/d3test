@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+	    <title>PHC - Circular heat chart</title>
+	    <link rel="stylesheet" href="BarChart/barchart.css">
+	    <link rel="stylesheet" href="LineChart/LineChart.css">
+      <link rel="stylesheet" href="css/style.css">
+	    <link rel="stylesheet" href="css/svg.css">
+      <script src="d3.js"></script>
+  		<script src="BarChart/bullet.js"></script>
+			<script src="BarChart/bulletBar.js"></script>
+  		<script src="LineChart/LineChart.js"></script>
+			<script src="angular.js"></script>
+	</head>
+
+	<body>
+		<div ng-app="myApp" >
+
+    <!-- <canvas   id="radar" class="chart chart-radar" chart-data="data" chart-labels="labels">
+    </canvas> -->
+    <div  ng-controller="selectCtrl">
+
+    <select ng-model="selectedName" ng-options="x for x in names">
+    </select>
+
+    </div>
+    <div  ng-controller="tableCtrl"> Radar Charts Highlights
+    <table >
+      <tr >Persistent Issues (have been Red or Amber during last 3 months)</tr>
+      <tr >
+				<td>Indicater</td>
+        <td>Saverity</td>
+        <td>Contact Person</td>
+      </tr>
+      <tr ng-repeat="x in tabledata">
+          <td>{{ x.Name }}</td>
+          <td>{{ x.Country }}</td>
+          <td>{{ x.num }}</td>
+      </tr>
+      <tr >Indicators Deteriorated this Month </tr>
+      <tr >
+        <td>Indicater</td>
+        <td>Saverity</td>
+        <td>Contact Person</td>
+      </tr>
+      <tr ng-repeat="x in tabledata">
+        <td>{{ x.Name }}</td>
+        <td>{{ x.Country }}</td>
+        <td>{{ x.num }}</td>
+      </tr>
+      </table>
+    </div>
+    </div>
+
+    <script>
+    // var app = angular.module('myApp', ["chart.js"]);
+		var app = angular.module('myApp',[]);
+    app.controller('selectCtrl', function($scope) {
+        $scope.names = ["Google", "Runoob", "Taobao"];
+    });
+     app.controller('tableCtrl', function($scope) {
+        $scope.tabledata = [{"Name":"Aaaaaaaa","Country":"aaaaaaa","num":"1"},{"Name":"Aaaaaaaa","Country":"aaaaaaa","num":"1"}];
+    });
+    // app.controller('myCtrl', function($scope) {
+    //     $scope.labels =["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"];
+		//
+    //   $scope.data = [
+    //        [65, 59, 90, 81, 56, 55, 40],
+    //        [28, 48, 40, 19, 96, 27, 100]
+    //    ];
+    // });
+    </script>
+
+		<section>
+    		<h3>Proactive Health Care</h3>
+        <div id="barchart1" class="barchart"></div>
+				<div id="barchartdescription1" ></div>
+				<div class="marksList"><span class="markRect"></span>Account  <span class="markCircle"></span>Benchmark </div>
+    		<!-- <div class="linechart"></div> -->
+		</section>
+
+    <script>
+
+var margin = {top: 5, right: 40, bottom: 20, left: 120},
+    width = 960 - margin.left - margin.right,
+    height = 50 - margin.top - margin.bottom;
+
+var chart = d3.bullet()
+    .width(width)
+    .height(height);
+var data1 = [{
+  "title": "Revenue",
+  "subtitle": "US$, in thousands",
+  "ranges": [150, 225, 300],
+  "measures": [220, 270],
+  "markers": [250]
+}, {
+  "title": "Profit",
+  "subtitle": "%",
+  "ranges": [20, 25, 30],
+  "measures": [21, 23],
+  "markers": [26]
+}, {
+  "title": "Order Size",
+  "subtitle": "US$, average",
+  "ranges": [350, 500, 600],
+  "measures": [100, 320],
+  "markers": [550]
+}, {
+  "title": "New Customers",
+  "subtitle": "count",
+  "ranges": [1400, 2000, 2500],
+  "measures": [1000, 1650],
+  "markers": [2100]
+}, {
+  "title": "Satisfaction",
+  "subtitle": "out of 5",
+  "ranges": [3.5, 4.25, 5],
+  "measures": [3.2, 4.7],
+  "markers": [4.4]
+}];
+
+// d3.json("bullets.json", function(error, data) {
+//   if (error) throw error;
+function showData(data) {
+  var svg = d3.select("#barchart1").selectAll("svg")
+      .data(data)
+    .enter().append("svg")
+      .attr("class", "bullet")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", data.length * 40)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .call(chart);
+
+  var title = svg.append("g")
+      .style("text-anchor", "end")
+      .attr("transform", "translate(-6," + height / 2 + ")");
+
+  title.append("text")
+      .attr("class", "title")
+      .text(function(d) { return d.title; });
+
+  // title.append("text")
+  //     .attr("class", "subtitle")
+  //     .attr("dy", "1em")
+  //     .text(function(d) { return d.subtitle; });
+
+  // d3.selectAll("button").on("click", function() {
+  //   svg.datum(randomize).call(chart.duration(1000)); // TODO automatic transition
+  // });
+// });
+}
+ // showData(data1);
+var data2 = [{
+  "title": "Revenue",
+  "subtitle": "US$, in thousands",
+  "ranges": [0,300],
+	"sectionRangesColor" :[{
+		"color": "red",
+		"range": [0, 100]
+	}, {
+		"color": "yellow",
+		"range": [100, 200]
+	}, {
+		"color": "green",
+		"range": [200, 300]
+	}, ],
+  "markers": [50,280]
+},
+{
+  "title": "test2",
+  "subtitle": "US$, in thousands",
+  "ranges": [0,300],
+	"sectionRangesColor" :[{
+		"color": "red",
+		"range": [0, 100]
+	}, {
+		"color": "yellow",
+		"range": [100, 200]
+	}, {
+		"color": "green",
+		"range": [200, 300]
+	}, ],
+  "markers": [30,230],
+}];
+var chart1 = d3.bulletBar()
+    .width(width)
+    .height(10)
+		.markersIcon([{
+        "type": "circle",
+        "color": "blue",
+        "descript": "Mark1"
+      }, {
+        "type": "rect",
+        "color": "black",
+        "descript": "Mark2"
+      }]);
+// d3.json("bullets.json", function(error, data) {
+//   if (error) throw error;
+function showData2(data) {
+  var svg = d3.select("#barchart1").selectAll("svg")
+      .data(data)
+    .enter().append("svg")
+      .attr("class", "bulletBar")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    	.append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .call(chart1);
+
+  var title = svg.append("g")
+      .style("text-anchor", "end")
+      .attr("transform", "translate(-70," + height / 2 + ")");
+
+  title.append("text")
+      .attr("class", "title")
+      .text(function(d) { return d.title; });
+}
+
+showData2(data2);
+
+function showDataDescription(data){
+	var xi = 0;
+	var svg = d3.select("#barchartdescription1").selectAll("svg")
+      .data(data)
+    .enter()
+    .append("g")
+		.append("rect")
+    .attr("x", function(d, i) {
+						xi = xi + 30 * i;
+            return xi;
+          })
+          .attr("rx", function(d, i) {
+            var iconStr = d.type;
+            if (iconStr != null) {
+              if (iconStr == "circle") {
+                return 30 / 2;
+              }
+            }
+            return 0;
+          })
+    .attr("ry", function(d, i) {
+            var iconStr = d.type;
+            if (iconStr != null) {
+              if (iconStr == "circle") {
+                return 30 / 2;
+              }
+            }
+            return 0;
+          })
+    .attr("style", function(d, i) {
+            var colorStr = d.color;
+            if (colorStr != null) {
+              return "fill:" + colorStr;
+            }
+            return "fill:" + "black";
+          })
+    .attr("height", 30)
+    .attr("width", 30)
+		.append("text")
+		.text(function(d) { return d.descript; })
+		.attr("transform", function(d, i) { xi = xi + 60 * i; return "translate(" + xi +"," + height / 2 + ")"; });
+
+  // var title = svg.append("g")
+  //     .style("text-anchor", "end")
+  //     .attr("transform", "translate(-70," + height / 2 + ")");
+	//
+  // title.append("text")
+  //     .attr("class", "title")
+  //     .text(function(d) { return d.descript; });
+
+}
+// showDataDescription([{
+//         "type": "circle",
+//         "color": "blue",
+//         "descript": "Mark1"
+//       }, {
+//         "type": "rect",
+//         "color": "black",
+//         "descript": "Mark2"
+//       }]);
+function randomize(d) {
+  if (!d.randomizer) d.randomizer = randomizer(d);
+  d.ranges = d.ranges.map(d.randomizer);
+  d.markers = d.markers.map(d.randomizer);
+  d.measures = d.measures.map(d.randomizer);
+  return d;
+}
+
+function randomizer(d) {
+  var k = d3.max(d.ranges) * .2;
+  return function(d) {
+    return Math.max(0, d + k * (Math.random() - .5));
+  };
+}
+
+</script>
+
+
+	</body>
+</html>
